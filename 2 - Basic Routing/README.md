@@ -22,49 +22,49 @@
 
 3. open `HelloWorld.jsx`
 
-    ```
-    import React from 'react'
+```
+import React from 'react'
 
-    function HelloWorld() {
-    return (
-        <div>
-        <h1>Hello World</h1>
-        </div>
-    )
-    }
+function HelloWorld() {
+  return (
+    <div>
+      <h1>Hello World</h1>
+    </div>
+  )
+}
 
-    export default HelloWorld;
-    ```
+export default HelloWorld;
+```
 
 4. open `App.jsx`
 
-    ```
-    import React from 'react'
-    import { BrowserRouter, Routes, Route } from 'react-router-dom'
-    import HelloWorld from './components/HelloWorld'
+```
+import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import HelloWorld from './components/HelloWorld'
 
-    import './App.css'
+import './App.css'
 
 
-    function App() {
-    return (
-        <>
-        <div>
+function App() {
+  return (
+    <>
+      <div>
 
-            <BrowserRouter>
+        <BrowserRouter>
 
-            <Routes>
-                <Route path="/" element={<HelloWorld/>} />
-            </Routes>
+          <Routes>
+              <Route path="/" element={<HelloWorld/>} />
+          </Routes>
 
-            </BrowserRouter>
+        </BrowserRouter>
 
-        </div>
-        </>
-    )
-    }
+      </div>
+    </>
+  )
+}
 
-    export default App
-    ```
+export default App
+```
 
 ![Image](5.PNG)
