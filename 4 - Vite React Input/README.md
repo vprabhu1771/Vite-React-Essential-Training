@@ -23,7 +23,7 @@ index.css
 app.css
 
 
-3. Input.jsx
+3. open `Input.jsx`
 
 ```
 import React, { useState } from 'react';
