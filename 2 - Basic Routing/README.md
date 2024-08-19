@@ -2,23 +2,23 @@
  
 1. Commands
 
-```
-npm install react-router-dom
-```
+    ```
+    npm install react-router-dom
+    ```
 
 2. Folder Setup
 
-Folder Setup
+    Folder Setup
 
-```
-project_name -> src -> components
-```
+    ```
+    project_name -> src -> components
+    ```
 
-File Setup
+    File Setup
 
-```
-project_name -> src -> components -> HelloWorld.jsx
-```
+    ```
+    project_name -> src -> components -> HelloWorld.jsx
+    ```
 
 3. open `HelloWorld.jsx`
 
