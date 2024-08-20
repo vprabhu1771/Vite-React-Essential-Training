@@ -17,13 +17,14 @@ project_name -> src -> components -> Login.jsx
 2. open `Login.jsx`
 
 ```
-// src/components/Login.jsx
 import React, { useState } from 'react';
 
 const Login = () => {
     const [email, setEmail] = useState('admin@gmail.com');
     const [password, setPassword] = useState('admin');
     const [errors, setErrors] = useState({});
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState('');
 
     const validate = () => {
         const errors = {};
@@ -35,20 +36,50 @@ const Login = () => {
 
         if (!password) {
             errors.password = 'Password is required';
-        } 
-        else if (password.length < 6) {
+        } else if (password.length < 2) {
             errors.password = 'Password must be at least 6 characters';
         }
 
         return errors;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const validationErrors = validate();
         if (Object.keys(validationErrors).length === 0) {
-            // Perform login
-            console.log('Logged in:', { email, password });
+            setErrors({});
+            setLoading(true);
+            setMessage('');
+            
+            try {
+                const response = await fetch('http://192.168.1.122:8000/api_v2/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }),
+                });
+
+                const data = await response.json();
+                setLoading(false);
+
+                if (response.ok) {
+                    setMessage(`Login successful! Token: ${data}`);
+                    setMessage(`Login successful! Token: ${data || 'N/A'}`);
+                    console.log('Logged in:', data);
+
+                    // Example: Logging token or other response data
+                    console.log('Token:', data);
+                } else {
+                    setMessage('Login failed. Please try again.');
+                    setErrors(data.errors || {});
+                }
+                
+            } catch (error) {
+                setLoading(false);
+                setMessage('Login failed. Please try again.');
+                console.error('Error:', error);
+            }
         } else {
             setErrors(validationErrors);
         }
@@ -93,10 +124,19 @@ const Login = () => {
 
                 </div>
 
-                <button type="submit" className="btn btn-primary">Login</button>
+                <button type="submit" className="btn btn-primary" disabled={loading}>
+
+                    {loading ? 'Logging in...' : 'Login'}
+
+                </button>
+                
+                {message && <div className={`mt-3 ${message.includes('successful') ? 'text-success' : 'text-danger'}`}>
+
+                    {message}
+                    
+                </div>}
 
             </form>
-            
         </div>
     );
 };
