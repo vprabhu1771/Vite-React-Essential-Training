@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ForgetPassword from './components/pages/ForgetPassword';
-import AppLayout from './components/layout/AppLayout';
+import ForgetPassword from './components/frontend/ForgetPassword'
+import AppLayout from './components/frontend/layout/App';
 
 const App = () => {
   return (
