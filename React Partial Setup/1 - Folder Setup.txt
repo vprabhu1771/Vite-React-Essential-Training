@@ -8,7 +8,7 @@ File Setup
 
 project_folder - src -> components -> frontend -> layout
 
-App.jsx
+AppLayout.jsx
 TopBar.jsx
 Header.jsx
 Footer.jsx
