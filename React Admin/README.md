@@ -287,6 +287,41 @@ project_name -> src -> components -> admin -> category -> CategoryList.jsx
 project_name -> src -> components -> admin -> category -> BrandList.jsx
 ```
 
+`CategoryList.jsx`
+
+```
+import { List, Datagrid, TextField, EditButton, DeleteButton } from 'react-admin';
+
+export const CategoryList = (props) => (
+    <List {...props}>
+        <Datagrid>
+            <TextField source="id" />
+            <TextField source="name" />
+            <EditButton basepath='/categories'/>
+            <DeleteButton basepath='/categories' />
+        </Datagrid>
+    </List>
+);
+```
+
+`BrandList.jsx`
+
+```
+import { List, Datagrid, TextField, EditButton, DeleteButton } from 'react-admin';
+
+export const BrandList = (props) => (
+    <List {...props}>
+        <Datagrid>
+            <TextField source="id" />
+            <TextField source="name" />
+            <TextField source="image_path" />
+            <EditButton basepath='/brands'/>
+            <DeleteButton basepath='/brands' />
+        </Datagrid>
+    </List>
+);
+```
+
 `App.jsx`
 
 ```
