@@ -226,26 +226,36 @@ http://192.168.1.111:8000/api/v1/categories?page=1
 http://192.168.1.111:8000/api/v1/brands?page=1
 ```
 
+```
 npm create vite react_admin_laraval_small_shop
+```
 
+```
 √ Select a framework: » React
 √ Select a variant: » JavaScript
 
 Scaffolding project in C:\Users\windows_rig1\Documents\GitHub\react_admin_laraval_small_shop...
 
 Done. Now run:
+```
 
-  cd react_admin_laraval_small_shop
-  npm install
-  npm run dev
+```
+cd react_admin_laraval_small_shop
+npm install
+npm run dev
+```
 
-
+```
 npm add react-admin
+```
 
+```
 https://www.npmjs.com/package/ra-data-simple-rest
+```
 
+```
 npm i ra-data-simple-rest
-
+```
 
 # Env Setup
 
