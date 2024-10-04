@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 
 const Login = () => {
-    const [email, setEmail] = useState('admin@gmail.com');
-    const [password, setPassword] = useState('admin');
-    const [errors, setErrors] = useState({});
-    const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState('');
+  const [email, setEmail] = useState('admin@gmail.com');
+  const [password, setPassword] = useState('admin');
+  const [deviceName, setdeviceName] = useState('Web');
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
 
-    const validate = () => {
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
+
+  const validate = () => {
         const errors = {};
         if (!email) {
             errors.email = 'Email is required';
@@ -31,18 +34,28 @@ const Login = () => {
             setErrors({});
             setLoading(true);
             setMessage('');
-            
+            console.log(JSON.stringify({ email, password, deviceName }));
             try {
-                const response = await fetch('http://192.168.1.122:8000/api_v2/login', {
+                const response = await fetch(`${API_URL}/login`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ email, password }),
+                    body: JSON.stringify({ 
+                        email, 
+                        password,
+                        device_name: deviceName }),
                 });
 
-                const data = await response.json();
+                // 
+                const data = await response.text();
+
+                // Changed to response.json() to parse the JSON
+                // const data = await response.json();
+
                 setLoading(false);
+                console.log(response);
+                
 
                 if (response.ok) {
                     setMessage(`Login successful! Token: ${data}`);
@@ -51,6 +64,12 @@ const Login = () => {
 
                     // Example: Logging token or other response data
                     console.log('Token:', data);
+
+                    // Save the token in localStorage
+                    localStorage.setItem('token', data); 
+
+                    // Redirect or update the authenticated state as needed
+                    window.location.href = '/'; // Redirect to home or dashboard after login
                 } else {
                     setMessage('Login failed. Please try again.');
                     setErrors(data.errors || {});
@@ -59,6 +78,7 @@ const Login = () => {
             } catch (error) {
                 setLoading(false);
                 setMessage('Login failed. Please try again.');
+                console.log(error);                
                 console.error('Error:', error);
             }
         } else {
@@ -118,6 +138,10 @@ const Login = () => {
                 </div>}
 
             </form>
+
+            <a href="/register" className="signup-link">
+                Don't have an account? Sign up
+            </a>
         </div>
     );
 };
