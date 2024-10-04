@@ -1,7 +1,7 @@
 # CROS SETUP
 ```
 php artisan make:middleware Cors
-``
+```
 
 `app\Http\Middleware\Cors.php`
 
