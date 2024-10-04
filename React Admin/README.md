@@ -1,6 +1,6 @@
-CROS SETUP
+# CROS SETUP
 
-`Cors.php`
+`app\Http\Middleware\Cors.php`
 
 ```
 <?php
@@ -36,7 +36,7 @@ class Cors
 }
 ```
 
-`app.php`
+`bootstrap\app.php`
 
 ```
 <?php
@@ -72,6 +72,8 @@ php artisan make:controller api/v1/CategoryController --resource
 ```
 php artisan make:controller api/v1/BrandController --resource
 ```
+
+`app\Http\Controllers\api\v1\CategoryController.php`
 
 ```
 <?php
@@ -138,7 +140,7 @@ class CategoryController extends Controller
     }
 }
 ```
-
+`app\Http\Controllers\api\v1\BrandController.php`
 ```
 <?php
 
@@ -205,7 +207,7 @@ class BrandController extends Controller
 ```
 
 
-`api.php`
+`routes\api.php`
 
 ```
 // V1
@@ -267,8 +269,7 @@ VITE_API_BASE_URL="http://192.168.1.111:8000/api/v1"
 
 # Folder Setup
 
-Folder Setup
-
+```
 project_name -> src -> components
 
 project_name -> src -> components -> admin
@@ -276,14 +277,15 @@ project_name -> src -> components -> admin
 project_name -> src -> components -> admin -> category
 
 project_name -> src -> components -> admin -> brand
+```
 
+# File Setup
 
-File Setup
-
+```
 project_name -> src -> components -> admin -> category -> CategoryList.jsx
 
 project_name -> src -> components -> admin -> category -> BrandList.jsx
-
+```
 
 `App.jsx`
 
