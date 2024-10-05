@@ -6,16 +6,20 @@ To convert the Laravel `CategoryController` logic to Django view logic, I'll use
     from django.db import models
 
     class Category(models.Model):
+        id = models.BigAutoField(primary_key=True)
         name = models.CharField(max_length=255)
 
         def __str__(self):
             return self.name
+
+        class Meta:
+            db_table = 'category'
     ```
 
 2. **Serializer** (In `serializers.py`):
     ```python
     from rest_framework import serializers
-    from .models import Category
+    from backend.models import Category
 
     class CategorySerializer(serializers.ModelSerializer):
         class Meta:
@@ -30,7 +34,7 @@ To convert the Laravel `CategoryController` logic to Django view logic, I'll use
     from rest_framework import generics
     from rest_framework.response import Response
     from rest_framework.pagination import PageNumberPagination
-    from .models import Category
+    from backend.models import Category
     from .serializers import CategorySerializer
 
     # Custom pagination class to handle Content-Range header
